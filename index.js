@@ -1,22 +1,16 @@
 
-export function create(src, init) {
-  let cache = null
-  return () => cache ? cache : (cache = load(src, init))
-}
+export function defer(load) {
+  let promise = null
+  return () => promise ? promise : (promise = Promise.resolve(load()))
+} 
 
-export function load(src, init) {
-  return new Promise((resolve, reject) => {
-    (document.head || document.body).appendChild(Object.assign(document.createElement("script"), {
+export const load = typeof document === 'undefined'
+  ? Promise.reject(new Error('not supported'))
+  : (src, options = {}) => new Promise((onload, onerror) => {
+    ;(document.head || document.body).appendChild(Object.assign(document.createElement('script'), options, {
       src,
       async: true,
-      charset: "utf8",
-      onload() {
-        const result = init && init()
-        result instanceof Promise ? result.then(resolve) : resolve()
-      },
-      onerror() {
-        reject(new Error(`Failed to load ${src}`))
-      },
+      onload,
+      onerror,
     }))
   })
-}

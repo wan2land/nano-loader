@@ -1,0 +1,1 @@
+function r(o){let e=null;return()=>e||(e=Promise.resolve(o()))}var d=typeof document=="undefined"?Promise.reject(new Error("not supported")):(o,e={})=>new Promise((t,n)=>{(document.head||document.body).appendChild(Object.assign(document.createElement("script"),e,{src:o,async:!0,onload:t,onerror:n}))});export{r as defer,d as load};

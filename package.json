@@ -1,9 +1,11 @@
 {
   "name": "nano-loader",
   "version": "0.0.1",
-  "description": "Dynamic script loader for Browser.",
+  "description": "Dynamic Script Loader for Browser.",
   "keywords": [
-    "load-script",
+    "dynamic import",
+    "import",
+    "load script",
     "load",
     "script",
     "browser"
@@ -11,6 +13,14 @@
   "author": "Changwan Jun <wan2land@gmail.com>",
   "license": "MIT",
   "repository": "https://github.com/wan2land/nano-loader",
-  "main": "index.min.js",
-  "types": "index.d.ts"
+  "scripts": {
+    "build": "npm run build:esm",
+    "build:esm": "esbuild index.js --bundle --outfile=index.esm.js --format=esm --minify"
+  },
+  "main": "index.js",
+  "module": "index.esm.js",
+  "types": "index.d.ts",
+  "devDependencies": {
+    "esbuild": "^0.12.8"
+  }
 }
