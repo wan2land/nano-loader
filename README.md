@@ -29,9 +29,9 @@ console.log(someFunctionFromFoo()) // work!
 ```js
 import { defer, load } from 'nano-loader'
 
-const load = defer(() => load('https://something.com/foo.js'))
+const loadFoo = defer(() => load('https://something.com/foo.js'))
 
-await Promise.all([...Array(10000).keys()].map(() => load())) // load 10000times, but load script once.
+await Promise.all([...Array(10000).keys()].map(() => loadFoo())) // load 10000times, but load script once.
 
 console.log(someFunctionFromFoo())
 ```
