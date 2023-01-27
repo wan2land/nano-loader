@@ -21,6 +21,6 @@
   "module": "index.esm.js",
   "types": "index.d.ts",
   "devDependencies": {
-    "esbuild": "0.15.14"
+    "esbuild": "0.17.5"
   }
 }
