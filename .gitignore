@@ -1,2 +1,7 @@
 
 /node_modules
+
+/index.cjs
+/index.iife.js
+/index.mjs
+/index.d.ts
