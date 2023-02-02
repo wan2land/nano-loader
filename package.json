@@ -1,6 +1,6 @@
 {
   "name": "nano-loader",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Dynamic Script Loader for Browser.",
   "keywords": [
     "dynamic import",
@@ -20,6 +20,7 @@
     "url": "https://github.com/wan2land/nano-loader/issues"
   },
   "scripts": {
+    "prepublish": "npm run build",
     "test": "npm run test:unit",
     "test:unit": "jest",
     "build": "npm run build:esm && npm run build:iife && npm run build:cjs && npm run build:dts",
@@ -32,6 +33,13 @@
   "module": "index.mjs",
   "types": "index.d.ts",
   "browser": "./index.iife.js",
+  "files": [
+    "index.d.ts",
+    "index.iife.js",
+    "index.mjs",
+    "index.cjs",
+    "index.ts"
+  ],
   "exports": {
     ".": {
       "import": {
