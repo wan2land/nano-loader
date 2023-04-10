@@ -24,9 +24,9 @@
     "test": "npm run test:unit",
     "test:unit": "jest",
     "build": "npm run build:esm && npm run build:iife && npm run build:cjs && npm run build:dts",
-    "build:esm": "esbuild index.ts --bundle --outfile=./index.mjs --format=esm",
-    "build:iife": "esbuild index.ts --bundle --outfile=./index.iife.js --format=iife --global-name=NanoLoader",
-    "build:cjs": "esbuild index.ts --bundle --outfile=./index.cjs --format=cjs",
+    "build:esm": "esbuild src/loader.ts --bundle --outfile=./index.mjs --format=esm",
+    "build:iife": "esbuild src/loader.ts --bundle --outfile=./index.iife.js --format=iife --global-name=NanoLoader",
+    "build:cjs": "esbuild src/loader.ts --bundle --outfile=./index.cjs --format=cjs",
     "build:dts": "tsc"
   },
   "main": "index.js",
