@@ -1,4 +1,4 @@
-import { once } from './loader'
+import { once } from '.'
 
 describe('nano-loader, once', () => {
   it("test once sync success", async () => {

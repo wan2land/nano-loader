@@ -6,7 +6,7 @@
   <a href="https://www.npmjs.com/package/nano-loader"><img alt="License" src="https://img.shields.io/npm/l/nano-loader.svg?style=flat-square" /></a>
 </p>
 
-Dynamic Script Loader for Browser, enabling dynamic script loading from any URL.
+The Nano Loader is a dynamic script loader for browsers, allowing you to seamlessly load and use scripts from any URL on-the-fly. This enables you to efficiently access and integrate scripts from various sources.
 
 ## Installation
 
@@ -18,28 +18,29 @@ npm install nano-loader --save
 
 `load`
 
-The load method loads a script from the given URL.
+The load method retrieves a script from the specified URL, making it readily available for use within your code. This enables you to easily fetch and incorporate scripts from various sources.
 
 ```ts
 import { load } from 'nano-loader'
 
-await load('https://something.com/foo.js')
+await load('https://something.com/payment.js')
 
-console.log(someFunctionFromFoo()) // work!
+console.log(window.Something.payment()) // work!
 ```
 
 `once`
 
-The once method ensures that the script is loaded only once, no matter how many times it is called.
+The once method guarantees that a script is loaded just once, regardless of how often it is called. This feature is helpful for preventing unnecessary script loading and enhancing overall performance.
 
 ```js
 import { once, load } from 'nano-loader'
 
-const loadFoo = once(() => load('https://something.com/foo.js'))
+const loadPayment = once(() => load('https://something.com/payment.js'))
 
-await Promise.all([...Array(10000).keys()].map(() => loadFoo())) // load 10000times, but load script once.
+// Attempts to load the script 10000 times, but only loads it once.
+await Promise.all([...Array(10000).keys()].map(() => loadPayment()))
 
-console.log(someFunctionFromFoo())
+console.log(window.Something.payment())
 ```
 
 ## Examples
@@ -51,15 +52,16 @@ import { once, load } from 'nano-loader'
 
 const KAKAO_KEY = process.env.KAKAO_KEY
 
-const loadDaumMapSdk = once(
+const loadKakaoMapSdk = once(
   () => load(`//dapi.kakao.com/v2/maps/sdk.js?appkey=${KAKAO_KEY}&libraries=services&autoload=false`)
     .then(() => new Promise((resolve) => window.kakao.maps.load(resolve)))
+    .then(() => window.kakao.maps)
 )
 
 export default {
   mount() {
-    await loadDaumMapSdk()
-    new window.kakao.maps.Map(/* ... */)
+    const maps = await loadKakaoMapSdk()
+    maps.Map(/* ... */)
   },
 }
 
