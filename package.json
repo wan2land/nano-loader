@@ -1,6 +1,6 @@
 {
   "name": "nano-loader",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "Dynamic Script Loader for Browser.",
   "keywords": [
     "dynamic import",
