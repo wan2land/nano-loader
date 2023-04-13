@@ -1,4 +1,4 @@
-import { once } from '.'
+import { once } from './index.ts'
 
 describe('nano-loader, once', () => {
   it("test once sync success", async () => {

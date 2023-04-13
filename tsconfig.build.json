@@ -5,11 +5,9 @@
     ],
     "strict": true,
     "declaration": true,
-    "allowImportingTsExtensions": true,
     "emitDeclarationOnly": true
   },
   "include": [
-    "index.ts",
-    "index.test.ts"
+    "index.ts"
   ]
 }
