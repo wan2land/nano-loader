@@ -16,11 +16,15 @@ export function once<T>(load: () => T | Promise<T>): () => Promise<T> {
 export const defer = once
 
 export let load = (src: string, options?: LoadOptions) => new Promise<void>((onload, reject) => {
-  (document.head || document.body).appendChild(Object.assign(document.createElement('script'), options, {
+  const el = document.createElement('script')
+  ;(document.head || document.body).appendChild(Object.assign(el, options, {
     src,
     async: true,
     onload,
-    onerror: () => reject(new Error(`Failed to load script: ${src}`)),
+    onerror: () => {
+      el.remove()
+      reject(new Error(`Failed to load script: ${src}`))
+    },
   }))
 })
 
